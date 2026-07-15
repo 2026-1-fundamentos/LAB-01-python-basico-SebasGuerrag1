@@ -12,5 +12,14 @@ def pregunta_01():
 
     Rta/
     214
+    
 
     """
+    total = 0
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        for linea in lineas:
+            campos = linea.split('\t')
+            if len(campos) > 1:
+                total += int(campos[1])
+    return total

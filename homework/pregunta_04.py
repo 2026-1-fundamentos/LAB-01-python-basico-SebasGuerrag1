@@ -26,3 +26,13 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    lista = []
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        for linea in lineas:
+            campos = linea.split('\t')
+            if len(campos) > 2:
+                fecha = campos[2].strip()
+                mes = fecha[5:7]
+                lista.append(mes)
+    return [(i, lista.count(i)) for i in sorted(set(lista))]

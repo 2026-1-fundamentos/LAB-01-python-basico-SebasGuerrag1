@@ -20,3 +20,13 @@ def pregunta_10():
 
 
     """
+    lista = []
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        for linea in lineas:
+            campos = linea.split('\t')
+            if len(campos) > 3:
+                campos[3] = campos[3].replace(',', '')
+                campos[4] = campos[4].split(',')
+                lista.append((campos[0], len(campos[3]), len(campos[4])))
+    return lista

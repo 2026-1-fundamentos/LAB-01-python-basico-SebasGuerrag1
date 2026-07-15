@@ -26,3 +26,14 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    lista = []
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        for linea in lineas:
+            campos = linea.split('\t')
+            if len(campos) > 4:
+                diccionario = campos[4].strip().split(',')
+                for item in diccionario:
+                    clave, valor = item.split(':')
+                    lista.append((clave, int(valor)))
+    return [(i, min(x[1] for x in lista if x[0] == i), max(x[1] for x in lista if x[0] == i)) for i in sorted(set(x[0] for x in lista))]

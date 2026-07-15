@@ -15,3 +15,11 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    lista = []
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        lineas = archivo.readlines()
+        for linea in lineas:
+            campos = linea.split('\t')
+            if len(campos) > 0:
+                lista.append(campos[0])
+    return [(i, lista.count(i)) for i in sorted(set(lista))]

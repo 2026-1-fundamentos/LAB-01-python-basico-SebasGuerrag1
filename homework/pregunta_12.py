@@ -15,3 +15,17 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    diccionario = {}
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            campos = linea.strip().split('\t')
+            if len(campos) >= 5:
+                clave = campos[0]
+                valores = campos[4].split(',')
+                suma_valores = sum(int(valor.split(':')[1]) for valor in valores)
+                
+                if clave not in diccionario:
+                    diccionario[clave] = 0
+                diccionario[clave] += suma_valores
+
+    return dict(sorted(diccionario.items()))

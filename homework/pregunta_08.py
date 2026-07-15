@@ -27,3 +27,23 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    diccionario_agrupado = {}
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            campos = linea.strip().split('\t')
+            
+            if len(campos) >= 2:
+                letra = campos[0]
+                numero = int(campos[1]) 
+                
+                if numero not in diccionario_agrupado:
+                    diccionario_agrupado[numero] = []
+                
+                if letra not in diccionario_agrupado[numero]:
+                    diccionario_agrupado[numero].append(letra)
+                
+                diccionario_agrupado[numero] = sorted(set(diccionario_agrupado[numero]))
+                
+    resultado = sorted(diccionario_agrupado.items())
+    
+    return resultado

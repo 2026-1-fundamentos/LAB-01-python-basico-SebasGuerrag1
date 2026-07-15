@@ -16,3 +16,18 @@ def pregunta_11():
 
 
     """
+    diccionario = {}
+    with open('files/input/data.csv', mode='r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            campos = linea.strip().split('\t')
+            
+            if len(campos) >= 4:
+                valor = int(campos[1])
+                letras = campos[3].split(',')
+
+                for letra in letras:
+                    if letra not in diccionario:
+                        diccionario[letra] = 0
+                    diccionario[letra] += valor
+                    
+    return dict(sorted(diccionario.items()))
